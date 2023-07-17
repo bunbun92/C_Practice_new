@@ -42,7 +42,7 @@ void fillRect(BinImg* bin, int x, int y, int w, int h, uint8 val){
 	}
 }
 
-//¿¹¿ÜÃß°¡ÇÊ¿ä
+//ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ï¿½Ê¿ï¿½
 void drawRect(BinImg* bin, int x, int y, int w, int h, uint8 val){	
 	uint8* p = bin->bmp;
 	p += (bin->W * y) + x;
@@ -78,14 +78,38 @@ void drawLine(BinImg* bin, int x0, int y0, int x1, int y1, uint8 val){
 	uint8* p = bin->bmp;
 	p += (bin->W * y0) + x0;
 	float s = (float) y1/x1 ;
+	
 	for (int x= 0; x< x1-x0, (&p[(int)(x * bin->W + x * s)] <= &Max); x++)
 		p[(int) (x * bin->W + x * s)]= val;	
 }
 
 void flip_vertical(BinImg* bin){
-	int x0;
-	int x1;
-	int y0;
-	int y1;
+	uint8 t;
+	uint8* p = bin->bmp;
+
+	for(int i= 0; i< bin->H; i++){
+		for(int j= 0; j < bin->W / 2; j++){
+			t = p[j];
+			p[j] = p[bin->W -1 -j];
+			p[bin->W -1 -j] = t;
+		}
+		p+= bin->W;
+	}
 	
+}
+
+void flip_horizontal(BinImg* bin){
+	uint8 t;
+	uint8* p = bin->bmp;
+	uint8* p2 = bin->bmp + (bin->H - 1) * bin->W;
+
+	for(int i= 0; i< bin->H / 2; i++){
+		for(int j= 0; j< bin->W; j++){
+			t= p[j];
+			p[j] = p2[j];
+			p2[j] = t;
+		}
+		p += bin->W;
+		p2 -= bin->W;
+	}
 }

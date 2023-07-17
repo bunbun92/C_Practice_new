@@ -6,7 +6,7 @@
 
 typedef unsigned char uint8;
 
-void main(){
+int main(){
 // 
 // 	uint8 R[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 11, 15};
 // 	uint8 Q[] = {4, 5, 6, 8, 7, 8};
@@ -46,4 +46,6 @@ void main(){
 	/*fillRect(b, 12, 10, 5, 5, 1);*/
 	/*drawRect(b, 14, 10, 5, 7, 1);*/
 	drawLine(b, 18, 15, 2, 4, 1);
+
+	return 0;
 }

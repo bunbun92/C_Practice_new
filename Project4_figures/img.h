@@ -43,7 +43,7 @@ void fillRect(BinImg* bin, int x, int y, int w, int h, uint8 val){
 	}
 }
 
-//예외처리 필요
+
 void drawRect(BinImg* bin, int x, int y, int w, int h, uint8 val){	
 	uint8* p = bin->bmp;
 	p += (bin->W * y) + x;
@@ -176,4 +176,18 @@ void draw(BinImg* bin){
 void free(BinImg* bin){
 	delete bin->bmp;
 	bim_init(bin);
+}
+
+void drawCircle(BinImg* bin, int x0, int y0, int r){
+	uint8* p = bin->bmp;
+	p += bin->W * y0 + x0;
+
+	float times = 360 /(((2*r)-1) * 4) ;
+
+	for(int A= 0; A <= 360; A += times){
+		float radianA = A * 3.141592 / 180;
+		int x1 = r * cos(radianA) + 0.5;
+		int y1 = r * sin(radianA) + 0.5;
+		p[bin->W * y1 + x1]= 1;
+	}
 }

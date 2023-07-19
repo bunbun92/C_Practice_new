@@ -3,6 +3,7 @@
 #include "distance.h"
 #include "print.h"
 #include "img.h"
+#include "list.h"
 
 typedef unsigned char uint8;
 
@@ -40,12 +41,39 @@ int main(){
 	BinImg* b= &a;
 
 	bim_init(b);
-	bim_alloc(b, 16, 12);
-	printf("%d \n", at(b, 1, 1));
+	bim_alloc(b, 16, 16);
+	/*printf("%d \n", at(b, 1, 1));*/
 
-	/*fillRect(b, 12, 10, 5, 5, 1);*/
+	/*fillRect(b, 0, 0, 4, 4, 1);*/
 	/*drawRect(b, 14, 10, 5, 7, 1);*/
-	drawLine(b, 18, 15, 2, 4, 1);
+	drawLine(b, 1, 2, 7, 14, 1);
+	drawLine(b, 15, 16, 5, 3, 1);
+ 	/*flip_vertical(b)*/;
+	/*flip_horizontal(b);*/
 
+	/*rotate90(b, 1);*/
+
+	/*fillRect(b, 0, 0, 4, 4, 1);*/
+	/*behalf(b);*/
+/*	draw(b);*/
+	free(b);
+
+	puts("");
+
+	list c;
+	list* d = &c;
+
+	list_init(d);
+ 	list_push_back(d, 10);
+	list_push_back(d, 20);
+	list_push_back(d, 30);
+	list_push_back(d, 40);
+	list_push_back(d, 50);
+
+	list_print(d);
+
+	list_push_at(d, 5, 2);
+
+	list_print(d);
 	return 0;
 }

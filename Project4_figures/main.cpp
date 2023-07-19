@@ -16,13 +16,17 @@ int main(){
 	bim_init(b);
 	bim_alloc(b, 40, 40);
 
-	/*drawLine(b, 2, 2, 13, 10, 1);*/
-	drawCircle(b, 20, 20, 12);
+/*	drawLine(b, 2, 2, 33, 2, 1);*/
+	/*drawLine(b, 2, 10, 12, 16, 1);*/
+/*	drawLine2(b, 2, 14, 33, 35, 1);*/
+	/*drawCircle(b, 20, 20, 14);*/
+	drawCircle2(b, 20, 20, 14);
 	draw(b);
 
 	free(b);
 
 	puts("");
+
 
 // 	int r= 4;
 // 	float x= 0;

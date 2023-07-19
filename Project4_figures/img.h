@@ -8,7 +8,7 @@ typedef struct{
 	int W, H;
 } BinImg;
 
-#define Max (bin->bmp[bin->W * bin->H])
+#define EndAddr (&bin->bmp[bin->W * bin->H])
 
 void bim_init(BinImg* bin){
 	memset(bin, 0, sizeof(BinImg));
@@ -48,11 +48,11 @@ void drawRect(BinImg* bin, int x, int y, int w, int h, uint8 val){
 	uint8* p = bin->bmp;
 	p += (bin->W * y) + x;
 
-	for (int i= 0; i< h && p[i * bin->W] <= bin->bmp[bin->W * bin->H]; i++){
+	for (int i= 0; i< h && &p[i * bin->W] <= &bin->bmp[bin->W * bin->H]; i++){
 		p[i * bin->W] = val;		
 		p[i * bin->W + (w-1)] = val;
 	}
-	for (int i= 1; i< w-1 && p[i] <= bin->bmp[bin->W * bin->H]; i++){
+	for (int i= 1; i< w-1 && &p[i] <= &bin->bmp[bin->W * bin->H]; i++){
 		p[i] = val;		
 		p[i+ bin->W * (h-1)] = val;
 	}
@@ -78,14 +78,34 @@ void drawLine(BinImg* bin, int x0, int y0, int x1, int y1, uint8 val){
 	float s = (float)(x1 - x0) / (y1 - y0) ;
 
 	if(x0 == x1){
-		for (int y= 0; y< (y1-y0) && (&p[y * bin->W] <= &Max); y++)
+		for (int y= 0; y< (y1-y0) && (&p[y * bin->W] <= EndAddr); y++)
 			p[y * bin->W]= val;
 	}else if (y0 == y1){
-		for (int x= 0; x< (x1-x0) && (&p[x + bin->W * (bin->H - y1 - 1)] <= &Max); x++)
+		for (int x= 0; x< (x1-x0) && (&p[x + bin->W * (bin->H - y1 - 1)] <= EndAddr); x++)
 			p[x]= val;
 	}else{
-		for (int y= 0; y< (x1-x0)/s && (&p[(int)(y * bin->W + y * s)] <= &Max); y++)
+		for (int y= 0; y< (x1-x0)/s && (&p[(int)(y * bin->W + y * s)] <= EndAddr); y++)
 			p[(int)(y * bin->W + y * s)]= val;
+	}
+}
+
+void drawLine2(BinImg* bin, int x0, int y0, int x1, int y1, uint8 val){
+
+	if (x1 < x0)
+		exchangeDot(&x0, &y0, &x1, &y1);
+
+	uint8* p = bin->bmp;
+	p += (bin->W * y0) + x0;
+
+	float s = (float)(y1 - y0) / (x1 - x0);
+
+	if (y0 == y1){
+		for (int x= 0; x< (x1-x0) && (&p[x + bin->W * (bin->H - y1 - 1)] <= EndAddr && x0+x <= bin->W - 1); x++)
+			p[x]= val;
+	}
+	else{
+		for (int y= 0; y< y1-y0 && (&p[(int)(y * bin->W + y/s)] <= EndAddr && y0+y <= bin->H - 1 && x0 + (int)(y/s) <= bin->W -1); y++)
+			p[(int)(y * bin->W + y/s)]= val;
 	}
 }
 
@@ -124,7 +144,6 @@ void rotate90(BinImg* bin, int n){
 	int W = bin->H;
 	int H = bin->W;
 	uint8* bmp2 = new uint8[W * H];
-	memset(bmp2, 0, W * H);
 	uint8* p = bin->bmp;
 
 	for(int i= 0; i< n; i++){
@@ -148,7 +167,6 @@ void behalf(BinImg* bin){
 	int W = (int) (bin->W/2 + 0.5);
 	int H = (int) (bin->H/2 + 0.5);
 	uint8* bmp2 = new uint8[W * H];
-	memset(bmp2, 0, W * H);
 	uint8* p = bin->bmp;
 
 	for(int y= 0; y < H; y++){
@@ -168,7 +186,7 @@ void behalf(BinImg* bin){
 void draw(BinImg* bin){
 	for(int i= 0; i< bin->H; i++){
 		for(int j= 0; j< bin->W; j++)
-			bin->bmp[bin->W * i + j] ? printf("*") : printf(" ");	
+			bin->bmp[bin->W * i + j] ? printf("¡Ü") : printf("  ");	
 		puts("");
 	}
 }
@@ -186,8 +204,22 @@ void drawCircle(BinImg* bin, int x0, int y0, int r){
 
 	for(int A= 0; A <= 360; A += times){
 		float radianA = A * 3.141592 / 180;
-		int x1 = r * cos(radianA) + 0.5;
-		int y1 = r * sin(radianA) + 0.5;
+		int x1 = (int) (r * cos(radianA) + 0.5);
+		int y1 = (int) (r * sin(radianA) + 0.5);
 		p[bin->W * y1 + x1]= 1;
+	}
+}
+
+void drawCircle2(BinImg* bin, int x0, int y0, int r){
+	uint8* p = bin->bmp;
+	p+= bin->W * y0 + x0;
+
+	for(int x= 0; x < r+1; x++){
+		int y= (int) (sqrt((float)(r*r)-(x*x)) + 0.5);
+		p[bin->W * y + x] = 1;
+		p[bin->W * y - x] = 1;
+		p[-(bin->W * y) + x] = 1;
+		p[-(bin->W * y) - x] = 1;
+
 	}
 }

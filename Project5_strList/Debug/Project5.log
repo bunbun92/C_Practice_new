@@ -1,14 +1,15 @@
-﻿빌드 시작: 2023-07-19 오후 1:02:47
-     1>2 노드의 "C:\Users\i\Documents\Visual Studio 2013\Projects\Project5\Project5.vcxproj" 프로젝트(Build 대상)입니다.
+﻿빌드 시작: 2023-07-19 오후 4:39:08
+     1>2 노드의 "C:\Users\i\Documents\Visual Studio 2013\Projects\Project5_strList\Project5.vcxproj" 프로젝트(Build 대상)입니다.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project5.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _MBCS /D _CRT_SECURE_NO_WARNINGS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>c:\users\i\documents\visual studio 2013\projects\project5\strlist.h(118): warning C4715: 'StrList::load' : 모든 제어 경로에서 값을 반환하지는 않습니다.
+     1>c:\users\i\documents\visual studio 2013\projects\project5_strlist\strlist.h(128): warning C4715: 'StrList::load' : 모든 제어 경로에서 값을 반환하지는 않습니다.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\i\Documents\Visual Studio 2013\Projects\Project5\Debug\Project5.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\i\Documents\Visual Studio 2013\Projects\Project5\Debug\Project5.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\i\Documents\Visual Studio 2013\Projects\Project5\Debug\Project5.lib" /MACHINE:X86 Debug\main.obj
-         Project5.vcxproj -> C:\Users\i\Documents\Visual Studio 2013\Projects\Project5\Debug\Project5.exe
-     1>"C:\Users\i\Documents\Visual Studio 2013\Projects\Project5\Project5.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\i\Documents\Visual Studio 2013\Projects\Project5_strList\Debug\Project5_strList.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\i\Documents\Visual Studio 2013\Projects\Project5_strList\Debug\Project5_strList.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\i\Documents\Visual Studio 2013\Projects\Project5_strList\Debug\Project5_strList.lib" /MACHINE:X86 Debug\main.obj
+         Project5.vcxproj -> C:\Users\i\Documents\Visual Studio 2013\Projects\Project5_strList\Debug\Project5_strList.exe
+     1>"C:\Users\i\Documents\Visual Studio 2013\Projects\Project5_strList\Project5.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
 
 빌드했습니다.
 
-경과 시간: 00:00:01.88
+경과 시간: 00:00:01.35

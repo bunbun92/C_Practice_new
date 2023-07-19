@@ -26,11 +26,23 @@ public:
 
 	StrList(): hd(new Elem) {}
 	StrList(char* str, int len): hd(new Elem) {this->hd->setStr(str, len);}
+	~StrList() {
+		Elem* p= this->hd;		
+		for (Elem* t; p; p= t){
+			t = p->getNext();
+			freeElem(p);
+		}		
+	}
 
 	bool isEmpty(Elem* p){
 		if (p->getStr() == 0 && p->getNext() == 0)
 			return 1;
 		return 0;
+	}
+
+	void freeElem(Elem* p){
+		p->freeStr();
+		delete p;
 	}
 
 	void push_front(char* str, int len){
@@ -70,8 +82,7 @@ public:
 		}
 
 		Elem* p = this->hd->getNext();
-		this->hd->freeStr();
-		delete this->hd;
+		freeElem(this->hd);
 		this->hd = p;
 
 	}
@@ -86,8 +97,7 @@ public:
 		Elem* p = this->hd;
 		for(; p->getNext()->getNext(); p= p->getNext());
 
-		p->getNext()->freeStr();
-		delete p->getNext();
+		freeElem(p->getNext());
 		p->setNext(0);
 	}
 

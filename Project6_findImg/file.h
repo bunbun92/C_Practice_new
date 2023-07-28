@@ -30,7 +30,7 @@ public:
 	}
 
 	bool write(uint8* buf, int len){
-		return fwrite(buf, 1, len, m_fd) == len;
+		return  fwrite(buf, 1, len, m_fd) == len;
 	}
 
 	bool seek(int offset, int origin){

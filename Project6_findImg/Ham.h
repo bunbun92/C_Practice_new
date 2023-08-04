@@ -53,7 +53,7 @@ class Ham{
 
     void combi(int* arr, int len, int m){
         int cnt = 1;
-        int a = pow(2, len); 
+        int a = pow(2.0, len); 
 
         for(int i=0; i < a; i++){
             if(_dist16(a-1, i) == len - m){
@@ -67,7 +67,7 @@ class Ham{
     void combi2(int* arr, int len, int m, int n){
         list l;
         int cnt = 1;
-        int a = pow(2, len); 
+        int a = pow(2.0, len); 
 
         for(int i=0; i < a; i++){
             if(_dist16(a-1, i) == len - m)

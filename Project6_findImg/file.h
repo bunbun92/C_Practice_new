@@ -1,7 +1,9 @@
 #include <stdio.h>
 
 typedef unsigned char uint8;
+typedef unsigned short uint16;
 typedef unsigned int uint32;
+#define RIF(x) if((x) == 0) { puts(""#x); return 0; }
 
 class File {
 	FILE* m_fd;
@@ -23,6 +25,26 @@ public:
 
 	bool read(uint8* buf, int len){
 		return fread(buf, 1, len, m_fd) == len;
+	}
+
+	bool readLine(char* buf){
+		int len = fread(buf, 1, 128, m_fd);				
+		RIF(len);
+
+		int cnt = 0;
+		char* p = buf;
+		for (; *p != 0x0d && *p != 0x0a && cnt < len; p++)
+			cnt++;
+
+		int bytes = *((uint16*)p) == 0x0a0d ? 2 : 1;
+
+		seek(bytes -(len-cnt), SEEK_CUR);
+
+		if(cnt == 0 || cnt == len)
+			return 0;
+
+		memset(bytes + buf+cnt, 0, len - bytes - cnt);
+		return 1;
 	}
 
 	bool write(char* buf, int len){

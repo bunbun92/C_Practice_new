@@ -2,25 +2,29 @@
 
 class Thread{
 	Mutex& m;
-	Semaphore _sem;
-	HANDLE _hThr;
+	Semaphore& _sem;
+	HANDLE& _hThr;
 	
 
 	int thr(){		
-		for(int i= 0; i< 1600; i++){
-			m.lock();
+		/*_sem.post();*/
+		m.lock();
+		for(int i= 0; i< 15; i++){						
 			printf("thread 진행중 = %d 초", i);
-			puts(".");
-			m.unlock();
+			puts(".");			
+			Sleep(300);
 		}
+		m.unlock();
+		/*CloseHandle(_hThr);*/
 		return 0;
 	}
 
 	static int thr_init(void* param){
 		return ((Thread*)param)->thr();
 	}
-public:
-	Thread(Mutex& t) : m(t) {} 
+public:	
+	Thread(Mutex& m, Semaphore& t, HANDLE& h) : m(m), _sem(t), _hThr(h) {}
+
 	void start(){
 		CreateThread(0, 0, (LPTHREAD_START_ROUTINE)thr_init, this, 0, 0);
 	}

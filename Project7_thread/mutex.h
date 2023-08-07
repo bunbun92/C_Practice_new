@@ -12,8 +12,8 @@ public:
 class Semaphore{
 	HANDLE m_hSem;
 public:
-	Semaphore(int initV = 0) : m_hSem(CreateSemaphore((LPSECURITY_ATTRIBUTES)m_hSem, initV, 1, 0)){}
-	~Semaphore(){ ReleaseSemaphore(m_hSem, 1, 0); }
-	void wait() { WaitForSingleObject(m_hSem, INFINITE); }
-	void post() { OpenSemaphore((DWORD)m_hSem, 1, 0); }
+	Semaphore(int initV = 1, int keys = 1) : m_hSem(CreateSemaphore((LPSECURITY_ATTRIBUTES)m_hSem, initV, keys, 0)){}
+	~Semaphore(){ CloseHandle(m_hSem); }	
+	void post() { WaitForSingleObject(m_hSem, INFINITE); }
+	void release() { ReleaseSemaphore(m_hSem, 1, 0); }
 };

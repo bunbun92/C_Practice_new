@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{c3588872-246d-4c9e-8059-d75f410c34b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{0da329ac-0514-43b7-a2ce-e23c4bc17423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="ui\소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ui\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lec.gui.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="lec.guiDlg.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="flist.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="gdi.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="core\debug.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\def.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\fio.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\util.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\peer.h">
+      <Filter>core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lec.gui.cpp">
+      <Filter>ui\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="lec.guiDlg.cpp">
+      <Filter>ui\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>ui\소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="lec.gui.rc">
+      <Filter>ui\리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\lecgui.rc2">
+      <Filter>ui\리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\lec.gui.ico">
+      <Filter>ui\리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

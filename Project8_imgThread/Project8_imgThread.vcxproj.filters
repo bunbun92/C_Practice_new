@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일\img">
+      <UniqueIdentifier>{57f81730-46d0-412d-b34a-53fc54801c20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\thr">
+      <UniqueIdentifier>{e88765f0-446d-42b8-9408-4c6b96ba3c89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\util">
+      <UniqueIdentifier>{1a5ba9ff-2e26-4ba2-9786-4b15ad5b8d82}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="imgHeaders\bitmap.h">
+      <Filter>헤더 파일\img</Filter>
+    </ClInclude>
+    <ClInclude Include="imgHeaders\Rect.h">
+      <Filter>헤더 파일\img</Filter>
+    </ClInclude>
+    <ClInclude Include="utilHeaders\def.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+    <ClInclude Include="utilHeaders\file.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+    <ClInclude Include="thrHeaders\getThread.h">
+      <Filter>헤더 파일\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="thrHeaders\mutex.h">
+      <Filter>헤더 파일\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="thrHeaders\syncQueue.h">
+      <Filter>헤더 파일\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="thrHeaders\thread.h">
+      <Filter>헤더 파일\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="thrHeaders\imgProcThread.h">
+      <Filter>헤더 파일\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="utilHeaders\fio.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+    <ClInclude Include="utilHeaders\util.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+    <ClInclude Include="utilHeaders\flist.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+    <ClInclude Include="utilHeaders\gdi.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+    <ClInclude Include="utilHeaders\debug.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

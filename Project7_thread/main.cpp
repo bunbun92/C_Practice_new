@@ -1,31 +1,18 @@
 #include <stdio.h>
-#include "thread.h"
-
+#include "def.h"
+#include "util.h"
+#include "debug.h"
+#include "fio.h"
+#include "id_table.h"
+#include "thread3.h"
 
 int main(){
+	
+	Thread3 t;
 
-	Mutex m;
-	Semaphore t(2, 3);
-	HANDLE h;
-	Thread a(m, t, h, 'a');
-	Thread b(m, t, h, 'b');
-	Thread c(m, t, h, 'c');
+	t.start();
 
-	a.start();
-
-	Sleep(1000);
-
-	b.start();
-	Sleep(1000);
-
-	c.start();
-
-	Sleep(1000);
-
-	a.join();
-	b.join();
-	c.join();
-
+	t.join();
 
 	return 0;
 }

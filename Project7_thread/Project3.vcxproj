@@ -57,6 +57,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions); _CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -69,9 +70,16 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Project6_findImg\file.h" />
+    <ClInclude Include="debug.h" />
+    <ClInclude Include="def.h" />
+    <ClInclude Include="fio.h" />
+    <ClInclude Include="id_table.h" />
     <ClInclude Include="mutex.h" />
     <ClInclude Include="thread.h" />
     <ClInclude Include="thread2.h" />
+    <ClInclude Include="thread3.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

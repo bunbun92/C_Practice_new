@@ -60,14 +60,15 @@ class SocketThread : public Thread{
 		return 1;
 	}
 
-	void polling(){
-		bool h = HEADER1;
-		sock.write(&h, 1);		
-	}
+// 	void polling(){
+// 		bool h = HEADER1;
+// 		sock.write(&h, 1);		
+// 	}
 
-	void setMyID(){
-		sock.read(&myID, 4);
-	}
+
+// 	void setMyID(){
+// 		sock.read(&myID, 4);
+// 	}
 
 	bool printMsg(){
 		int myID;		

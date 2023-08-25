@@ -64,6 +64,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="debug.h" />
+    <ClInclude Include="def.h" />
+    <ClInclude Include="fio.h" />
+    <ClInclude Include="flist.h" />
+    <ClInclude Include="gdi.h" />
+    <ClInclude Include="requestThread.h" />
+    <ClInclude Include="socket.h" />
+    <ClInclude Include="thr.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

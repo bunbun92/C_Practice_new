@@ -17,7 +17,6 @@ public:
 		if (_fd)
 			fclose(_fd);
 	}
-	
 	static char* load(char* path, uint32& l) {
 		IO io;
 		RIF(io.open(path, "rb"));
@@ -86,7 +85,7 @@ public:
 	void flush() {
 		fflush(_fd);
 	}
-	__int64 size() {
+	uint32 size() {
 		return fileSize(_fd);
 	}
 	int cur() {
@@ -129,3 +128,5 @@ public:
 }; 
 
 #endif // ___fio_h__
+
+

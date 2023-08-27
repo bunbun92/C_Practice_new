@@ -43,6 +43,17 @@ public:
 		for (int i=0; i<fl.size(); i++)
 			::remove(fl.at(i));
 	}
+
+	static void clear_dir_fl(FileList* fl){
+		for (int i=0; i<fl->size(); i++)
+			::remove(fl->at(i));
+	}
+
+	static void remove(char* path){
+		::remove(path);
+	}
 };
 
 #endif // flist_h__
+
+

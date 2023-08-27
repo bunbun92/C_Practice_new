@@ -101,4 +101,6 @@ inline char* utf8_to_ansi(const char* src) {
 	return unicode_to_ansi((char*)uni, len);
 }
 
+ 
+
 #endif // util_h__

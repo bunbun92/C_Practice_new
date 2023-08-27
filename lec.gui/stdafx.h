@@ -39,12 +39,15 @@
 using namespace Gdiplus;
 #pragma comment(lib, "Gdiplus.lib")	
 
-#include "core/def.h"
-#include "core/debug.h"
-#include "core/util.h" 
-#include "core/fio.h"
-#include "flist.h"
+#include "def.h"
+#include "debug.h"
+#include "util.h" 
 #include "gdi.h"
+#include "fio.h"
+#include "flist.h"
+#include "thr.h"
+#include "socket.h"
+#include "test.h"
  
 
 #define _IsDown(k) (GetKeyState(k) & 0x80)

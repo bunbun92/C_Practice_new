@@ -12,6 +12,7 @@
 #include <deque>
 #include <list>
 #include <algorithm>
+#define _WINSOCKAPI_ 
 #include <Windows.h>
 #pragma warning(disable:4267) 
 #pragma warning(disable:4244) 

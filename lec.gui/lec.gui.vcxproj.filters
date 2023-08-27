@@ -36,26 +36,35 @@
     <ClInclude Include="Resource.h">
       <Filter>ui\헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="core\peer.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="def.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="fio.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="flist.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="socket.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="thr.h">
+      <Filter>ui\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
       <Filter>ui\헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="gdi.h">
       <Filter>ui\헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="core\debug.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\def.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\fio.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\util.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\peer.h">
-      <Filter>core</Filter>
+    <ClInclude Include="test.h">
+      <Filter>ui\헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

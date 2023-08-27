@@ -2,6 +2,7 @@
 #include "lec.gui.h"
 #include "lec.guiDlg.h"
 #include "afxdialogex.h"
+
  
 ClecguiDlg::ClecguiDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(ClecguiDlg::IDD, pParent), _bmp(vW, vH) 
@@ -23,8 +24,7 @@ BEGIN_MESSAGE_MAP(ClecguiDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 BOOL ClecguiDlg::OnInitDialog()
-{
-	_draw();
+{	_draw(0);
 	CDialogEx::OnInitDialog();
 	return 1;
 }
@@ -41,15 +41,19 @@ void ClecguiDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	switch (nChar) {
 	case VK_LEFT:
 		break;
-	case VK_RIGHT:
+	case VK_RIGHT:		
 		break;
 	case VK_UP:
+		_draw(5.0);
 		break;
 	case VK_DOWN:
+		_draw(-5.0);
 		break;
 	case VK_PRIOR:
+		_draw(25.0);
 		break;
 	case VK_NEXT:
+		_draw(-25.0);
 		break;
 	case 'B':
 		PostMessage(WM_ON_MSG, nChar);
@@ -63,6 +67,13 @@ void ClecguiDlg::OnMouseMove(UINT nFlags, CPoint p) {
 }
 BOOL ClecguiDlg::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
+	if (zDelta > 0) {
+		_draw(15.0);
+	}
+	else if (zDelta < 0) {
+		_draw(-15.0);
+	}
+
 	return CDialogEx::OnMouseWheel(nFlags, zDelta, pt);
 }
 
@@ -72,6 +83,7 @@ void ClecguiDlg::OnBnClickedButton1()
 	GetDlgItem(IDC_EDIT1)->GetWindowText(str);
 	char* txt= (char*)(LPCTSTR)str;
 	COUT(txt);
+	inputMsg(txt);
 }
 
 LRESULT ClecguiDlg::OnMsg(WPARAM a, LPARAM b)

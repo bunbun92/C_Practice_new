@@ -1,123 +1,82 @@
 #pragma once
 #define vW 780 
 #define vH 720
+#define msgW 200
+#define msgH 25
+#define padding 5
+#define msgDY (msgH + 2 * padding)
+#define msgPcs (vH / msgDY)
 
 class ClecguiDlg : public CDialogEx
 {
-	Bitmap _bmp;	
-	TEST t;
-	float cursor= 0;
+	Bitmap _bmp;
+	Peer _peer;
+	int _cursor= 0;
 
-	void operateCursor(float n){
-		cursor += n;
-		int h= 30;
-		if (cursor >= h + 10){
-			t.operate(-(int) (cursor/h));
-			cursor = 0;
+	void _draw() {
+		Graphics g(&_bmp);
+		g.Clear(Color::Black);
+		drawStr(g);
+		Invalidate(0);
+	}
+
+	void moveCursor(int dy){
+		_cursor += dy;
+		int n = _peer._msg.size();
+
+		if(_cursor < -2 * padding)
+			_cursor = 0;
+		else if(_cursor > 2* padding ){
+			if(n < msgPcs){
+				_cursor = 2* padding;
+			}else{
+				if( _cursor > (n - msgPcs) * msgDY)
+					_cursor = (n - msgPcs) * msgDY - 10;
+			}
 		}			
-		else if (cursor <= -(h + 10)){
-			t.operate(-(int)(cursor/h));
-			cursor = 0;
+		//수식 간단히 할방법 생각
+	}	
+	
+	void drawStr(Graphics& g){
+		int n =_peer._msg.size();
+		if(n > msgPcs)
+			g.TranslateTransform(0, -(n * msgDY - vH));
+		g.TranslateTransform(0, _cursor);		
+		int dx = vW - msgW;
+		for (int i = 0; i < n; i++){
+			char msg[128];
+
+			if (_peer._msg[i].from == _peer.myID){
+				setStrForm(msg, _peer._msg[i], 0);
+				g.TranslateTransform(dx, 0);
+				fill_rect(g, -padding, 0, msgW, msgH, Color::AliceBlue);
+				drawTxt(g, msg, -padding, 0, msgW, msgH, 14, false, 0, 1, Color::Black);
+				g.TranslateTransform(-dx, 0);
+			}
+			else{
+				setStrForm(msg, _peer._msg[i], 1);
+				fill_rect(g, padding, 0, msgW, 25, Color::Yellow);
+				drawTxt(g, msg, padding, 0, msgW, msgH, 14, false, 0, 1, Color::Black);
+			}
+			g.TranslateTransform(0, msgDY);
 		}
 	}
 
-	void _draw(float n) {				
-		Graphics g(&_bmp);
-		g.Clear(Color::Black);
-		
-		operateCursor(n);
-		drawStr(g, t);		
-		
-		Invalidate(0);
-	}
-
-	void inputMsg(char* txt){
-		Graphics g(&_bmp);
-		g.Clear(Color::Black);
-
-		t.pushMsg(txt);
-		t.operate(1);
-		drawStr(g, t);
-
-		Invalidate(0);
-	}
-
-	void drawStr(Graphics& g, TEST& t){
-
-		drawVirtualStr(g, t);
-
-		for (int i = t.curIdx, j = 0; j < MSGPCS; i++, j++){
-			if (t.msgList[i].flag == 0){}
-
-			if (t.msgList[i].ID == t.myID){
-				g.TranslateTransform(550, 0);
-
-				fill_rect(g, 0, cursor, 200, 25, Color::AliceBlue);
-				drawTxt(g, t.msgList[i].str, 0, cursor, 200, 25, 14, false, 0, 1, Color::Black);
-				drawTs(g, t.msgList[i].ts, -30);
-
-				g.TranslateTransform(-550, 0);
-			}
-			else{
-				fill_rect(g, 0, cursor, 200, 25, Color::Yellow);
-				drawTxt(g, t.msgList[i].str, 0, cursor, 200, 25, 14, false, 0, 1, Color::Black);
-				drawTs(g, t.msgList[i].ts, 200);
+	void setStrForm(char* msg, Msg _msg, bool from= 1){
+		if(from){
+			itoa(_msg.from, msg, 10);
+			strcat(msg, "님의 말: ");
+		}			
+		else{
+			if(_msg.to == _msg.from){
+				strcpy(msg, "나에게: ");				
+			}else{				
+				itoa(_msg.to, msg, 10);
+				strcat(msg, "님에게: ");
 			}			
-
-			g.TranslateTransform(0, 40);
 		}
-
-		drawVirtualStr(g, t, 0);
+		strcat(msg, _msg.str);
 	}
-
-	void drawTs(Graphics& g, int ts, int idx){
-		char tmp[64];
-		itoa(ts, tmp, 10);
-		drawTxt(g, tmp, idx, cursor, 0, 25, 11, false, 0, 1, Color::Yellow);
-	}
-
-	void drawVirtualStr(Graphics& g, TEST& t, bool top = 1){
-		int virtCurIdx;
-		int degree = 40;
-		if (top){
-			if (t.curIdx > 0)
-				virtCurIdx = t.curIdx - 1;
-			else{
-				return;
-			}
-		}
-		else{
-			degree = 0;
-			if (t.curIdx + MSGPCS < t.msgList.size())
-				virtCurIdx = t.curIdx + MSGPCS;
-			else{
-				return;
-			}
-		}
-
-		if (t.msgList[virtCurIdx].ID == t.myID){
-			g.TranslateTransform(0, degree * -1);
-			g.TranslateTransform(550, 0);
-
-			fill_rect(g, 0, cursor, 200, 25, Color::AliceBlue);
-			drawTxt(g, t.msgList[virtCurIdx].str, 0, cursor, 200, 25, 14, false, 0, 1, Color::Black);
-			drawTs(g, t.msgList[virtCurIdx].ts, -30);
-
-			g.TranslateTransform(-550, 0);
-			g.TranslateTransform(0, degree);
-		}
-		else{
-			g.TranslateTransform(0, degree * -1);
-
-			fill_rect(g, 0, cursor, 200, 25, Color::Yellow);
-			drawTxt(g, t.msgList[virtCurIdx].str, 0, cursor, 200, 25, 14, false, 0, 1, Color::Black);
-			drawTs(g, t.msgList[virtCurIdx].ts, 200);
-
-			g.TranslateTransform(0, degree);
-		}
-
-	}
-
 
 public:
 	ClecguiDlg(CWnd* pParent = NULL);	 

@@ -65,6 +65,8 @@ BOOL ClecguiApp::InitInstance()
 	GdiplusStartupInput gdiplusStartupInput;
 	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 	AllocConsole();
+	Sock::SockSysInit();
+
 	// 표준 초기화
 	// 이들 기능을 사용하지 않고 최종 실행 파일의 크기를 줄이려면
 	// 아래에서 필요 없는 특정 초기화
@@ -74,9 +76,15 @@ BOOL ClecguiApp::InitInstance()
 	// 적절한 내용으로 수정해야 합니다.
 	SetRegistryKey(_T("로컬 응용 프로그램 마법사에서 생성된 응용 프로그램"));
 
-	ClecguiDlg dlg;
+
+	ClecguiDlg dlg;	
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
+
+
+
+
+
 	if (nResponse == IDOK)
 	{
 		// TODO: 여기에 [확인]을 클릭하여 대화 상자가 없어질 때 처리할

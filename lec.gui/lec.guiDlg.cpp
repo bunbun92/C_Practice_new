@@ -5,7 +5,7 @@
 
  
 ClecguiDlg::ClecguiDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(ClecguiDlg::IDD, pParent), _bmp(vW, vH) 
+	: CDialogEx(ClecguiDlg::IDD, pParent), _bmp(vW, vH), _peer(this) 
 {
 }
 
@@ -24,7 +24,9 @@ BEGIN_MESSAGE_MAP(ClecguiDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 BOOL ClecguiDlg::OnInitDialog()
-{	_draw(0);
+{	
+	_draw();
+	_peer.open();
 	CDialogEx::OnInitDialog();
 	return 1;
 }
@@ -44,16 +46,23 @@ void ClecguiDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	case VK_RIGHT:		
 		break;
 	case VK_UP:
-		_draw(5.0);
+		moveCursor(5);
+		_draw();
 		break;
 	case VK_DOWN:
-		_draw(-5.0);
+		moveCursor(-5);
+		_draw();
 		break;
 	case VK_PRIOR:
-		_draw(25.0);
+		moveCursor(25);
+		_draw();
 		break;
 	case VK_NEXT:
-		_draw(-25.0);
+		moveCursor(-25);
+		_draw();
+		break;
+	case VK_RETURN:
+		OnBnClickedButton1();
 		break;
 	case 'B':
 		PostMessage(WM_ON_MSG, nChar);
@@ -68,10 +77,12 @@ void ClecguiDlg::OnMouseMove(UINT nFlags, CPoint p) {
 BOOL ClecguiDlg::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
 	if (zDelta > 0) {
-		_draw(15.0);
+		moveCursor(15);
+		_draw();
 	}
 	else if (zDelta < 0) {
-		_draw(-15.0);
+		moveCursor(-15);
+		_draw();
 	}
 
 	return CDialogEx::OnMouseWheel(nFlags, zDelta, pt);
@@ -80,14 +91,20 @@ BOOL ClecguiDlg::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 void ClecguiDlg::OnBnClickedButton1()
 {
 	CString str;
-	GetDlgItem(IDC_EDIT1)->GetWindowText(str);
+	GetDlgItem(IDC_EDIT1)->GetWindowText(str);	
 	char* txt= (char*)(LPCTSTR)str;
-	COUT(txt);
-	inputMsg(txt);
+	/*COUT(txt);	*/
+	_peer.sendMsg(txt);	
+	GetDlgItem(IDC_EDIT1)->SetWindowText(_T(""));
 }
 
 LRESULT ClecguiDlg::OnMsg(WPARAM a, LPARAM b)
 {
-	
+	if (a==0)
+		_draw();
+	else if (a==-1)
+		COUT(FY, "connection error!!!");
+	else if (a==-2)
+		COUT(FY, "전송 실패!");
 	return 1;
 }

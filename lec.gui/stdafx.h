@@ -47,7 +47,8 @@ using namespace Gdiplus;
 #include "flist.h"
 #include "thr.h"
 #include "socket.h"
-#include "test.h"
+#include "./core/peer.h"
+
  
 
 #define _IsDown(k) (GetKeyState(k) & 0x80)

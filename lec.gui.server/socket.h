@@ -57,12 +57,13 @@ public:
 	}
 
 	bool readStr(char* buf){
-		char* o = buf;
-		while(*o != 0)
-			::recv(_sock, o++, 1, 0);					
-		if(o == buf)
-			return 0;
-		*o = 0;
+		char* o = buf;		
+		while(1){
+			::recv(_sock, o, 1, 0);
+			if(*o == 0)
+				return 0;			
+			o++;
+		}
 		return 1;
 	}
 

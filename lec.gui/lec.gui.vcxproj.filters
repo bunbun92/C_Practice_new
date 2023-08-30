@@ -63,9 +63,6 @@
     <ClInclude Include="gdi.h">
       <Filter>ui\헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
-      <Filter>ui\헤더 파일</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lec.gui.cpp">
